@@ -7,6 +7,24 @@ This file provides context and instructions for AI coding agents (Copilot, Curso
 This is a Terraform module for [STACKIT](https://www.stackit.de/en/), the cloud platform by Schwarz Group.
 It is part of the [terraform-stackit-modules](https://github.com/terraform-stackit-modules) organization, which aims to provide community-maintained, production-grade Terraform modules for STACKIT.
 
+### This module: affinity-group
+
+Creates STACKIT **server affinity groups** (placement policy for a *group* of servers). Dedicated
+module because an affinity group is inherently multi-server, while `terraform-stackit-compute` is
+single-server. Consumers pass `affinity_group_ids["<key>"]` to a server's `affinity_group` input.
+
+**Resources managed**
+- `stackit_affinity_group` — 0..N groups, via `for_each` over `var.affinity_groups`.
+
+**Key inputs** — `project_id` (req), `region`, `affinity_groups` (map keyed by stable id:
+`{name, policy}`; policy ∈ hard-affinity | hard-anti-affinity | soft-affinity | soft-anti-affinity).
+
+**Outputs** — `affinity_group_ids` (map key→id), `affinity_group_members` (map key→server IDs).
+
+**Gotchas**
+- `policy` is validated against the four allowed values.
+- The group is inert until servers reference its ID; this module does not create servers.
+
 ## Repository structure
 
 ```
