@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 (2026-09-22)
+
+### Features
+
+* Initial STACKIT affinity group module ([212e498](https://github.com/terraform-stackit-modules/terraform-stackit-affinity-group/commit/212e4987a665bf9f3dfa77aa8e789f560caff0da))
+
 ## [1.0.1](https://github.com/terraform-stackit-modules/terraform-repo-template/compare/v1.0.0...v1.0.1) (2026-09-09)
 
 ### Bug Fixes
